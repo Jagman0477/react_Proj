@@ -1,0 +1,54 @@
+.login_register_wrap {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.login_wrap {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.padding_eight_all {
+    padding: 8%;
+}
+
+.heading_s1 {
+    margin-bottom: 25px;
+}
+
+.btn-block{
+    width: 50%;
+}
+
+.btn-pink{
+    background-color: #FF324D !important;
+    color: white !important;
+}
+
+.btn-pink:hover{
+    background-color: white !important;
+    border-color: #FF324D;
+    color: #FF324D !important;
+}
+
+.different_login {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.form-note {
+    margin-top: 20px;
+}
+
+.signUpLink{
+    color: #292b2c;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    transition: all .3s ease-in-out;
+}
