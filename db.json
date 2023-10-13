@@ -1,0 +1,16 @@
+{
+  "register": [
+    {
+      "name": "Pablo Escobar",
+      "email": "pablo@gmail.com",
+      "password": "a2@Sdfghj",
+      "id": 1
+    },
+    {
+      "name": "dawwda",
+      "email": "adwad@d.com",
+      "password": "a2@Sdfghj",
+      "id": 2
+    }
+  ]
+}
