@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './login.css'
-import { useNavigate } from 'react-router-dom';
+
 import APIServices from '../../API/ApiServices';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  
+
+    // const { authUser,
+    //         setAuthUser,
+    //         isLoggedIn, 
+    //         setLoggedIn,
+    //         userRole,
+    //         setUserRole} = AuthContext
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailValidate, setEmailValidate] = useState('');
     const [passwordValidate, setPasswordValidate] = useState('');
-    const navigate = useNavigate();
+    const { authUser, setAuthUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const validateEmail = () => {
         if(!email || email === ''){
@@ -44,16 +54,29 @@ export default function Login() {
         return false
     } 
 
-    const loginFormSubmit = (e) => {
+    const loginFormSubmit = async(e) => {
         e.preventDefault()
         if(validateEmail() && validatePassword()){
             let data = {
                 email: email,
                 password: password
             }
-            let loginStatus = APIServices.login(data)
-            if(loginStatus)
-                navigate('/')
+            let loginData = await APIServices.login(data)
+            if(loginData.data.length<1){
+                console.log("Wrong email or password");
+                navigate('/login')
+            } else {
+                let data = { email: loginData.data[0].email,
+                            userName: loginData.data[0].userName,
+                            id: loginData.data[0].id,
+                            isLoggedIn: true,
+                            role: loginData.data[0].role }
+                            console.log(data);
+                localStorage.setItem('userContext', JSON.stringify(data))
+                setAuthUser(data);
+                navigate('/customer/')
+            }
+                
         } else 
             console.log("validation failed");
     }

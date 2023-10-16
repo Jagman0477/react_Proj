@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useAuth } from "../context/AuthContext"
 
 class ApiServices{
 
@@ -18,8 +19,8 @@ class ApiServices{
     login = async (data) => {
 
         let res = await axios.get(`${this.baseURL}register?email=${data.email}&password=${data.password}`)
-                if(res.status === 201){
-                    return true
+                if(res.status === 200){
+                    return res
                 } else {
                     console.log(res);
                     return false
