@@ -1,5 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -12,7 +13,6 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import Missing from './components/Missing/Missing';
 import CustomerHome from './components/CustomerHome/CustomerHome';
 import RequireAuth from './components/RequireAuth/RequireAuth';
-import { AuthProvider } from './context/AuthContext';
 
 function App() {
 

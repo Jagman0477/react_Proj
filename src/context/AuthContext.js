@@ -1,21 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import { createContext } from "react";
 
-export const AuthContext = createContext(null)
+const AuthContext = createContext(null)
+
+export const AuthUpdateContext = createContext(null)
 
     export const AuthProvider = ({children}) => {
         const [authUser, setAuthUser] = useState(null)
 
-        // const getLocalStorageItems = () => {
-        //     return JSON.parse(localStorage.getItem('userContext'))
-        // }
+        const login = (authUser) => {
+            setAuthUser(authUser)
+        }
 
-        // useEffect(() => {
-        //     console.log(getLocalStorageItems());
-        //     if(getLocalStorageItems()){
-        //         setAuthUser(getLocalStorageItems())
-        //     }
-        // }, [])
+        const logout = () => {
+            setAuthUser(null)
+        } 
         
         return (
             <AuthContext.Provider value={{authUser, setAuthUser}}>
@@ -23,9 +22,7 @@ export const AuthContext = createContext(null)
             </AuthContext.Provider>
         ) 
     }
-    // const value = {
-    //     authUser,
-    //     setAuthUser,
-    //     isLoggedIn, 
-    //     setLoggedIn,
-    // }    
+
+    export const useAuth = () => {
+        return useContext(AuthContext)
+    } 
