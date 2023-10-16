@@ -33,7 +33,9 @@ function App() {
             <Route path='/register' element={<Register/>}/>
 
             {/* Admin pages */}
-            <Route path='/admin/' element={<AdminDashboard allowedRoles={['admin']}/>}/>
+            <Route element={<RequireAuth allowedRoles={['admin']}/>}>
+              <Route path='/admin/' element={<AdminDashboard/>}/>
+            </Route>
 
             {/* Customer pages */}
             <Route element={<RequireAuth allowedRoles={['customer']}/>}>

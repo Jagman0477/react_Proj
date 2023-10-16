@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import './login.css'
 import APIServices from '../../API/ApiServices';
-import { useAuth } from '../../context/AuthContext';
+import { AuthContext, useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -17,10 +17,9 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [emailValidate, setEmailValidate] = useState('');
     const [passwordValidate, setPasswordValidate] = useState('');
-    const { authUser, setAuthUser } = useState('')
     
-    const auth = useAuth()
-
+    // const auth = useAuth()
+    const {authUser, login, logout} = useContext(AuthContext)
     const navigate = useNavigate()
 
     const validateEmail = () => {
@@ -75,8 +74,11 @@ export default function Login() {
                             role: loginData.data[0].role }
                             console.log(data);
                 localStorage.setItem('userContext', JSON.stringify(data))
-                auth.login()
-                navigate('/customer/')
+                login(data)
+                if(data.role === 'customer')
+                    navigate('/customer/')
+                else if(data.role === 'admin')
+                    navigate('/admin')
             }
                 
         } else 
