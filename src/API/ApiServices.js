@@ -27,6 +27,30 @@ class ApiServices{
                 }
                 
     }
+
+    getUsers = async (data) => {
+
+        let res = await axios.get(`${this.baseURL}register`)
+                if(res.status === 200){
+                    return res
+                } else {
+                    console.log(res);
+                    return false
+                }
+                
+    }
+
+    deleteUser = async (data) => {
+
+        let res = await axios.delete(`${this.baseURL}register/${data.id}`)
+                if(res.status === 200){
+                    return res
+                } else {
+                    console.log(res);
+                    return false
+                }
+                
+    }
 }
 
 const APIServices = new ApiServices();

@@ -9,20 +9,6 @@ const RequireAuth = ({ allowedRoles }) => {
     const navigate = useNavigate()
     console.log(authUser);
 
-    // const refreshContext = async() => {
-    //     if(authUser === null){
-    //         if(JSON.parse(localStorage.getItem('userContext')) !== undefined || JSON.parse(localStorage.getItem('userContext')) !== null){
-    //             await setAuthUser(JSON.parse(localStorage.getItem('userContext')))
-    //         } else {
-    //             navigate('/login')
-    //         }
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     refreshContext()
-    // }, [])
-
     return(
         allowedRoles?.includes(authUser?.role)
         ?<Outlet/>

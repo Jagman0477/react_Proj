@@ -8,11 +8,13 @@ export default function Layout() {
 
   let { pathname } = useLocation();
 
+  console.log(!pathname.includes('/admin/'));
+
   return (
     <main className='App'>
-        {pathname!=='/missing' && <Navbar/>}
+        {(pathname!=='/missing' && !pathname.includes('/admin')) && <Navbar/>}
           <Outlet/>
-        {pathname!=='/missing' && <Footer/>}
+        {(pathname!=='/missing' && !pathname.includes('/admin')) && <Footer/>}
     </main>
   )
 }

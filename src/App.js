@@ -2,8 +2,6 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home/Home';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './components/Login/Login';
@@ -13,14 +11,14 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import Missing from './components/Missing/Missing';
 import CustomerHome from './components/CustomerHome/CustomerHome';
 import RequireAuth from './components/RequireAuth/RequireAuth';
+import AdminHome from './components/AdminComponents/AdminHome/AdminHome';
+import Customers from './components/AdminComponents/AdminHome/Customers/Customers';
 
 function App() {
 
 
   return (
     <div className="App">
-      {/* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></link> */}
-      {/* <Navbar/> */}
       <AuthProvider>
         <Routes>
 
@@ -34,7 +32,11 @@ function App() {
 
             {/* Admin pages */}
             <Route element={<RequireAuth allowedRoles={['admin']}/>}>
-              <Route path='/admin/' element={<AdminDashboard/>}/>
+              <Route path='/admin/' element={<AdminDashboard/>}>
+                <Route path='/admin/' element={<AdminHome/>}/>
+                <Route path='/admin/customers' element={<Customers/>}/>
+              </Route>
+              
             </Route>
 
             {/* Customer pages */}
@@ -49,7 +51,6 @@ function App() {
           </Route>
         </Routes>
         </AuthProvider>
-      {/* <Footer/> */}
     </div>
   );
 }
